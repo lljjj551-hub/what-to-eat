@@ -158,13 +158,13 @@ export function RecommendationCard({
           </Button>
 
           <a
-            href={`https://www.dianping.com/search/keyword/1/0_${restaurant.name}`}
+            href={`https://www.baidu.com/s?wd=${encodeURIComponent(restaurant.name)}+大众点评`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center whitespace-nowrap rounded-xl font-semibold transition-all duration-200 active:scale-95 h-9 px-4 text-sm text-muted-foreground hover:text-foreground hover:bg-muted"
           >
             <ExternalLink className="w-4 h-4 mr-1" />
-            大众点评
+            查看评价
           </a>
         </div>
       </CardContent>
