@@ -163,16 +163,18 @@ export function RecommendationCard({
             onClick={() => {
               const q = encodeURIComponent(restaurant.name);
               const webUrl = `https://m.dianping.com/search/keyword/1/0_${q}`;
-              // Try to open Dianping app via URL scheme
+              // dianping://web scheme + Universal Link fallback
+              const scheme = `dianping://web?url=${encodeURIComponent(webUrl)}`;
               const iframe = document.createElement("iframe");
               iframe.style.display = "none";
-              iframe.src = `dianping://search?keyword=${q}`;
+              iframe.src = scheme;
               document.body.appendChild(iframe);
-              // Fallback to web if app doesn't open
-              setTimeout(() => {
+              const fallback = setTimeout(() => {
                 document.body.removeChild(iframe);
                 window.location.href = webUrl;
-              }, 800);
+              }, 600);
+              // If app opened, browser will be backgrounded, clear fallback
+              window.addEventListener("pagehide", () => clearTimeout(fallback));
             }}
           >
             <ExternalLink className="w-4 h-4 mr-1" />
