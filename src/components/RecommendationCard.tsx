@@ -157,20 +157,15 @@ export function RecommendationCard({
             导航
           </Button>
 
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={() => {
-              navigator.clipboard.writeText(restaurant.name).catch(() => {});
-              window.location.href = "dianping://";
-              setTimeout(() => {
-                window.open("https://www.meituan.com", "_blank");
-              }, 800);
-            }}
+          <a
+            href={`https://m.amap.com/place/detail?id=${restaurant.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center whitespace-nowrap rounded-xl font-semibold transition-all duration-200 active:scale-95 h-9 px-4 text-sm text-muted-foreground hover:text-foreground hover:bg-muted"
           >
             <ExternalLink className="w-4 h-4 mr-1" />
-            大众点评
-          </Button>
+            看评价
+          </a>
         </div>
       </CardContent>
     </Card>
