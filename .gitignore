@@ -5,3 +5,4 @@ prisma/dev.db
 cloudflared.exe
 *.log
 .env.local
+!docs/
