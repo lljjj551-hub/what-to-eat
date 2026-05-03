@@ -162,7 +162,17 @@ export function RecommendationCard({
             variant="ghost"
             onClick={() => {
               const q = encodeURIComponent(restaurant.name);
-              window.location.href = `https://m.dianping.com/search/keyword/1/0_${q}`;
+              const webUrl = `https://m.dianping.com/search/keyword/1/0_${q}`;
+              // Try to open Dianping app via URL scheme
+              const iframe = document.createElement("iframe");
+              iframe.style.display = "none";
+              iframe.src = `dianping://search?keyword=${q}`;
+              document.body.appendChild(iframe);
+              // Fallback to web if app doesn't open
+              setTimeout(() => {
+                document.body.removeChild(iframe);
+                window.location.href = webUrl;
+              }, 800);
             }}
           >
             <ExternalLink className="w-4 h-4 mr-1" />
