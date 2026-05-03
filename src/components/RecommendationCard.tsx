@@ -157,29 +157,15 @@ export function RecommendationCard({
             导航
           </Button>
 
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={() => {
-              const q = encodeURIComponent(restaurant.name);
-              const webUrl = `https://www.dianping.com/search?keyword=${q}`;
-              // dianping://web scheme + Universal Link fallback
-              const scheme = `dianping://web?url=${encodeURIComponent(webUrl)}`;
-              const iframe = document.createElement("iframe");
-              iframe.style.display = "none";
-              iframe.src = scheme;
-              document.body.appendChild(iframe);
-              const fallback = setTimeout(() => {
-                document.body.removeChild(iframe);
-                window.location.href = webUrl;
-              }, 600);
-              // If app opened, browser will be backgrounded, clear fallback
-              window.addEventListener("pagehide", () => clearTimeout(fallback));
-            }}
+          <a
+            href={`https://www.dianping.com/search/keyword/1/0_${restaurant.name}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center whitespace-nowrap rounded-xl font-semibold transition-all duration-200 active:scale-95 h-9 px-4 text-sm text-muted-foreground hover:text-foreground hover:bg-muted"
           >
             <ExternalLink className="w-4 h-4 mr-1" />
             大众点评
-          </Button>
+          </a>
         </div>
       </CardContent>
     </Card>
