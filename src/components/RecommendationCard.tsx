@@ -162,7 +162,7 @@ export function RecommendationCard({
             variant="ghost"
             onClick={() => {
               const q = encodeURIComponent(restaurant.name);
-              const webUrl = `https://m.dianping.com/search/keyword/0/0_${q}`;
+              const webUrl = `https://www.dianping.com/search?keyword=${q}`;
               // dianping://web scheme + Universal Link fallback
               const scheme = `dianping://web?url=${encodeURIComponent(webUrl)}`;
               const iframe = document.createElement("iframe");
