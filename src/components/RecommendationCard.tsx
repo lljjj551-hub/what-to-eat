@@ -162,17 +162,7 @@ export function RecommendationCard({
             variant="ghost"
             onClick={() => {
               const q = encodeURIComponent(restaurant.name);
-              // Try Dianping app deeplink first, fallback to mobile web
-              const appUrl = `dianping://search?keyword=${q}`;
-              const webUrl = `https://m.dianping.com/searchshop?keyword=${q}`;
-              const start = Date.now();
-              window.location.href = appUrl;
-              // If app doesn't open within 1.5s, fallback to web
-              setTimeout(() => {
-                if (Date.now() - start < 2000) {
-                  window.location.href = webUrl;
-                }
-              }, 1500);
+              window.location.href = `https://m.dianping.com/search/keyword/1/0_${q}`;
             }}
           >
             <ExternalLink className="w-4 h-4 mr-1" />
