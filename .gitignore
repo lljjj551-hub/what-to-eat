@@ -6,3 +6,5 @@ cloudflared.exe
 *.log
 .env.local
 !docs/
+
+.vercel
