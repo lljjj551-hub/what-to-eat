@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model UserPreference {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  priceMin  Float?
+  priceMax  Float?
+  latitude  Float?
+  longitude Float?
+  address   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RestaurantCache {
+  id          String   @id @default(cuid())
+  poiId       String   @unique
+  name        String
+  address     String
+  latitude    Float
+  longitude   Float
+  rating      Float?
+  avgPrice    Float?
+  cuisineType String?
+  photos      String?  // JSON string array
+  phone       String?
+  openHours   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model RecommendationHistory {
+  id             String   @id @default(cuid())
+  userId         String
+  cuisineType    String
+  priceMin       Float
+  priceMax       Float
+  latitude       Float
+  longitude      Float
+  restaurantId   String
+  restaurantName String
+  rating         Float?
+  avgPrice       Float?
+  distance       Float
+  score          Float
+  relaxed        Boolean  @default(false)
+  createdAt      DateTime @default(now())
+}
+
+model DislikedRestaurant {
+  id           String   @id @default(cuid())
+  userId       String
+  restaurantId String
+  createdAt    DateTime @default(now())
+
+  @@unique([userId, restaurantId])
+}
+
+model FavoriteRestaurant {
+  id           String   @id @default(cuid())
+  userId       String
+  restaurantId String
+  createdAt    DateTime @default(now())
+
+  @@unique([userId, restaurantId])
+}

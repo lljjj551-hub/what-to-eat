@@ -1,0 +1,7 @@
+node_modules/
+.next/
+out/
+prisma/dev.db
+cloudflared.exe
+*.log
+.env.local
