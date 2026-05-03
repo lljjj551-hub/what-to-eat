@@ -158,13 +158,13 @@ export function RecommendationCard({
           </Button>
 
           <a
-            href={`https://www.xiaohongshu.com/search_result/?keyword=${encodeURIComponent(restaurant.name + ' 探店')}`}
+            href={`https://www.xiaohongshu.com/search_result/?keyword=${encodeURIComponent(restaurant.name + ' ' + (restaurant.address || '').slice(0, 10))}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center whitespace-nowrap rounded-xl font-semibold transition-all duration-200 active:scale-95 h-9 px-4 text-sm text-muted-foreground hover:text-foreground hover:bg-muted"
           >
             <ExternalLink className="w-4 h-4 mr-1" />
-            看评价
+            小红书评价
           </a>
         </div>
       </CardContent>
